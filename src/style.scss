@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
+
+@layer base {
+  :root {
+    --background: 20 14.3% 4.1%;
+    --foreground: 60 9.1% 97.8%;
+
+    --muted: 12 6.5% 15.1%;
+    --muted-foreground: 24 5.4% 63.9%;
+
+    --popover: 20 14.3% 4.1%;
+    --popover-foreground: 60 9.1% 97.8%;
+
+    --card: 20 14.3% 4.1%;
+    --card-foreground: 60 9.1% 97.8%;
+
+    --border: 12 6.5% 15.1%;
+    --input: 12 6.5% 15.1%;
+
+    --primary: 60 9.1% 97.8%;
+    --primary-foreground: 24 9.8% 10%;
+
+    --secondary: 12 6.5% 15.1%;
+    --secondary-foreground: 60 9.1% 97.8%;
+
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 60 9.1% 97.8%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 60 9.1% 97.8%;
+
+    --ring: 24 5.7% 82.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+html, body {
+  font-family: 'Inter Tight', serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  @apply text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl 2xl:text-2xl p-0 m-0;
+}
+
+@mixin inter-tight($weight: 400) {
+  font-weight: $weight;
+}
+
+h1 {
+  @include inter-tight(700);
+  @apply text-6xl;
+}
+
+h2 {
+  @include inter-tight(700);
+  @apply text-3xl;
+}
+
+.inter-100 {
+  @include inter-tight(100);
+}
+
+.inter-200 {
+  @include inter-tight(200);
+}
+
+.inter-300 {
+  @include inter-tight(300);
+}
+
+.inter-400 {
+  @include inter-tight(400);
+}
+
+.inter-500 {
+  @include inter-tight(500);
+}
+
+.inter-600 {
+  @include inter-tight(600);
+}
+
+.inter-700 {
+  @include inter-tight(700);
+}
+
+.inter-800 {
+  @include inter-tight(800);
+}
+
+.inter-900 {
+  @include inter-tight(900);
+}

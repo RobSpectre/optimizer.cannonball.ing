@@ -1,0 +1,54 @@
+{
+  "name": "optimizer.cannonball.ing",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && echo 'optimizer.cannonball.ing' > dist/CNAME",
+    "preview": "vite preview",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix",
+    "test": "jest --maxWorkers=2",
+    "test:inspect": "node --inspect-brk node_modules/.bin/jest --runInBand"
+  },
+  "dependencies": {
+    "@iconify/vue": "^4.2.0",
+    "@radix-icons/vue": "^1.0.0",
+    "@vueuse/core": "^12.3.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "pinia": "^2.3.0",
+    "pinia-plugin-persistedstate": "^4.2.0",
+    "radix-vue": "^1.9.12",
+    "tailwind-merge": "^2.6.0",
+    "vue": "^3.5.13",
+    "vue-gtag": "^2.0.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/vue": "^8.1.0",
+    "@types/node": "^22.10.3",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/test-utils": "^2.4.6",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.17.0",
+    "eslint-plugin-standard": "^4.1.0",
+    "eslint-plugin-vue": "^9.32.0",
+    "jest": "^29.7.0",
+    "postcss": "^8.4.49",
+    "pug": "^3.0.3",
+    "sass": "^1.83.0",
+    "tailwindcss": "^3.4.17",
+    "tailwindcss-animate": "^1.0.7",
+    "vite": "^6.0.5"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,vue}": [
+      "npm run lint"
+    ]
+  }
+}
