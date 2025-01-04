@@ -33,7 +33,7 @@ const actions = {
     this.observations.push(observation)
   },
   removeObservation (speed) {
-    this.state.observations = this.game.observations.filter(observation => speed !== observation.speed)
+    this.observations = this.observations.filter(observation => speed !== observation.speed)
   }
 }
 
