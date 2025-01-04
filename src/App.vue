@@ -17,7 +17,7 @@ const store = useStore()
 Container
   .center-align.flex-col.min-w-7.max-w-xl.py-6
     h1.m-6 Journey Optimizer
-    h2.m-6 Identify optimal speed based on your vehicle's fuel economy and capacity.
+    h2.m-6 Identify the optimal speed for any road trip based on your vehicle's fuel economy and capacity. 
   .center-align.flex-col.min-w-7.max-w-xl.py-6
     VehicleInfoCard
   .center-align.flex-col.min-w-7.max-w-xl.py-6
