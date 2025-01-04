@@ -2,11 +2,10 @@ import { defineStore } from 'pinia'
 
 function state () {
   return {
-    model: '',
-    distance: 0,
-    capacity: 0,
-    economy: 0,
-    stop_time: 0,
+    model: null,
+    distance: null,
+    capacity: null,
+    stop_time: null,
     observations: []
   }
 }
@@ -26,9 +25,6 @@ const actions = {
   },
   setCapacity (capacity) {
     this.capacity = capacity 
-  },
-  setEconomy (economy) {
-    this.economy = economy 
   },
   setStopTime (stop_time) {
     this.stop_time = stop_time 
