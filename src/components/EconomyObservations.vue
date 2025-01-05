@@ -82,6 +82,14 @@ const observations_with_min_time = computed( () => {
     )
   }))
 })
+
+const isVisible = computed(() => {
+  return (
+    store.distance &&
+    store.capacity &&
+    store.stop_time &&
+    store.observations.length >= 2   )
+})
 </script>
 
 <template lang="pug">
@@ -107,12 +115,12 @@ Card(class='max-w-md my-6 py-3')
           TableRow
             TableHead Speed
             TableHead Economy
-            TableHead Est. Time
+            TableHead(v-if="isVisible") Est. Time
             TableHead(class='text-right') Remove
         TableRow(v-for='observation in observations_with_min_time')
           TableCell {{ observation.speed }}
           TableCell {{ observation.economy }}
-          TableCell {{ observation.min_time }}
+          TableCell(v-if='isVisible') {{ observation.min_time }}
           TableCell
             .flex.justify-end
               Icon(
