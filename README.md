@@ -1,5 +1,39 @@
-# Vue 3 + Vite
+# Journey Optimizer 
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Identify the optimal speed for any road trip based on your vehicle's fuel economy and capacity.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## Features
+
+Look at all these crazy features!
+
+* Add vehicle information like make, model, fuel capacity and stop time to
+  reach your target distance.
+* Add a number of observations of your vehicle's fuel economy at different
+  speeds.
+* With multiple observations, the fastest speed will calculate automatically.
+* A curve of the estimated arrival time at each speed.
+* Your settings persist on device with `localStorage`.
+
+## Development
+
+1) Install the dependencies.
+
+<pre>
+npm install
+</pre>
+
+2) Launch local development webserver
+<pre>
+npm run dev
+</pre>
+
+3) Open browser to [http://localhost:5173](http://localhost:5173).
+
+4) Tweak away on `src/App.vue`.
+
+
+## Meta 
+
+* No warranty expressed or implied.  Software is as is. Diggity.
+* [MIT License](http://www.opensource.org/licenses/mit-license.html)
+* Lovingly crafted by [Rob Spectre](https://brooklynhacker.com) in New York

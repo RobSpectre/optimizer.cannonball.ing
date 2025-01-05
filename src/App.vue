@@ -25,4 +25,10 @@ Container
     EconomyObservations
   .center-align.flex-col.min-w-7.max-w-xl.py-6
     OptimalSpeedCard
+  .center-align.min-w-7.max-w-xl.py-6
+    .span.text-sm.inter-400
+      | Created by 
+      a(href="https://brooklynhacker.com") Rob Spectre
+      |. Made with ❤️ in New York. Inspired by Matt, Nik and Trevin. 
+      a(href="https://github.com/RobSpectre/optimizer.cannonball.ing") Source code.
 </template>
