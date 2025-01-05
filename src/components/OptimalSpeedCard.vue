@@ -22,7 +22,10 @@ import { event } from "vue-gtag"
 
 import { useStore } from '@/store/index.js'
 
-import { findOptimalSpeed } from '@/lib/utils'
+import {
+  findOptimalSpeed,
+  convertMinutesToHoursMinutes
+} from '@/lib/utils'
 
 const store = useStore()
 
@@ -62,6 +65,6 @@ Card(
         | Driving
         span.text-3xl.inter-700.mx-3 {{ optimalValues.best_speed }}
         |  will take
-        span.text-3xl.inter-700.ml-3 {{ optimalValues.min_time.toFixed(2) }}
+        span.text-3xl.inter-700.ml-3 {{ convertMinutesToHoursMinutes(optimalValues.min_time) }}
     CardDescription
 </template>

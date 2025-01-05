@@ -1,4 +1,6 @@
 <script setup>
+import { computed } from 'vue'
+
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
@@ -32,6 +34,10 @@ import { event } from "vue-gtag"
 
 import { useStore } from '@/store/index.js'
 
+import {
+  calculateTravelTimeWithFormatting
+} from '@/lib/utils'
+
 const store = useStore()
 
 let speed = null
@@ -60,6 +66,20 @@ function handleRemoveObservation (speed) {
     event_category: 'UX'
   })
 }
+
+const observations_with_min_time = computed( () => {
+  return store.observations.map((observation) => ({
+    speed: observation.speed,
+    economy: observation.economy,
+    min_time: calculateTravelTimeWithFormatting(
+      store.distance,
+      observation.speed,
+      observation.economy,
+      store.capacity,
+      store.stop_time
+    )
+  }))
+})
 </script>
 
 <template lang="pug">
@@ -85,10 +105,12 @@ Card(class='max-w-md my-6 py-3')
           TableRow
             TableHead Speed
             TableHead Economy
+            TableHead Est. Time
             TableHead(class='text-right') Remove
-        TableRow(v-for='observation in store.observations')
+        TableRow(v-for='observation in observations_with_min_time')
           TableCell {{ observation.speed }}
           TableCell {{ observation.economy }}
+          TableCell {{ observation.min_time }}
           TableCell
             .flex.justify-end
               Icon(

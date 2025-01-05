@@ -30,7 +30,12 @@ const actions = {
     this.stop_time = stop_time 
   },
   addObservation (observation) {
-    this.observations.push(observation)
+    const existingIndex = this.observations.findIndex(obs => obs.speed === observation.speed)
+    if (existingIndex >= 0) {
+      this.observations[existingIndex] = observation
+    } else {
+      this.observations.push(observation)
+    }
   },
   removeObservation (speed) {
     this.observations = this.observations.filter(observation => speed !== observation.speed)
