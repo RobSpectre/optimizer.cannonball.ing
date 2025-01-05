@@ -33,18 +33,33 @@ const optimalValues = computed(() => handleCalculateOptimalSpeed())
 
 function handleCalculateOptimalSpeed () {
   if (store.observations.length >= 2) {
-    return findOptimalSpeed(
+    const min_time = findOptimalSpeed(
       store.distance,
       store.capacity,
       store.stop_time,
       store.observations
     )
+
+    event('Find Optimal Speed', {
+      event_category: 'UX',
+      event_label: min_time,
+      vehicle_model: store.model,
+      vehicle_fuel_capacity: store.capacity,
+      vehicle_target_distance: store.distance,
+      vehicle_stop_time: store.stop_time,
+      vehicle_economy_observations: store.observations.length
+    })
+
+    return min_time
   } else {
     return { best_speed: null, min_time: null }
   }
 }
 
 const isVisible = computed(() => {
+  event('Journey Optimized', {
+
+  })
   return (
     store.distance &&
     store.capacity &&

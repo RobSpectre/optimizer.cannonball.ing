@@ -54,7 +54,9 @@ function handleAddObservation (speed, economy) {
     economy = null
 
     event('Add Economy Observation', {
-      event_category: 'UX'
+      event_category: 'UX',
+      observation_speed: speed,
+      observation_economy: economy
     })
   }
 }
