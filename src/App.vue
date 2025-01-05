@@ -9,6 +9,7 @@ import Container from '@/components/Container.vue'
 
 import VehicleInfoCard from '@/components/VehicleInfoCard.vue'
 import EconomyObservations from '@/components/EconomyObservations.vue'
+import OptimalSpeedCard from '@/components/OptimalSpeedCard.vue'
 
 const store = useStore()
 </script>
@@ -22,4 +23,6 @@ Container
     VehicleInfoCard
   .center-align.flex-col.min-w-7.max-w-xl.py-6
     EconomyObservations
+  .center-align.flex-col.min-w-7.max-w-xl.py-6
+    OptimalSpeedCard
 </template>
