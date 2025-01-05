@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia'
 
+import { calculateTravelTime, convertMinutesToHoursMinutes } from '@/lib/utils'
+
 function state () {
   return {
     model: null,
@@ -13,6 +15,40 @@ function state () {
 const getters = {
   getState (state) {
     return state
+  },
+  observationsWithCalculations () {
+    return this.observations.map((observation) => {
+      const travel_data = calculateTravelTime(
+        this.distance,
+        observation.speed,
+        observation.economy,
+        this.capacity,
+        this.stop_time
+      )
+
+      return {
+        speed: observation.speed,
+        economy: observation.economy,
+        total_time: travel_data.total_time,
+        stops: travel_data.stops,
+        refueling_time: travel_data.refueling_time,
+        fuel_consumed: travel_data.fuel_consumed,
+      }
+    })
+  },
+  observationsWithCalculationsSorted () {
+    const observations = this.observationsWithCalculations
+    return observations.sort((a, b) => a.speed - b.speed)
+  },
+  observationsSpeedByTravelTime () {
+    const observations = this.observationsWithCalculations
+    return observations.map(({ speed, total_time }) => { 
+      total_time = total_time / 60
+      return {
+        'Speed': speed,
+        'Hours': total_time
+      }
+    })
   }
 }
 

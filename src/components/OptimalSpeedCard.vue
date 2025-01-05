@@ -15,6 +15,17 @@ import {
   TooltipProvider,
   TooltipTrigger
 } from '@/components/ui/tooltip'
+import { LineChart } from '@/components/ui/chart-line'
+import { Separator } from '@/components/ui/separator'
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
 
 import { Icon } from '@iconify/vue'
 
@@ -57,9 +68,6 @@ function handleCalculateOptimalSpeed () {
 }
 
 const isVisible = computed(() => {
-  event('Journey Optimized', {
-
-  })
   return (
     store.distance &&
     store.capacity &&
@@ -67,6 +75,11 @@ const isVisible = computed(() => {
     store.observations.length >= 2   )
 })
 
+function yFormatter(tick, i) {
+  return typeof tick === 'number'
+    ? `${new Intl.NumberFormat('us').format(tick).toString()}`
+    : '';
+}
 </script>
 
 <template lang="pug">
@@ -82,4 +95,30 @@ Card(
         |  will take
         span.text-3xl.inter-700.ml-3 {{ convertMinutesToHoursMinutes(optimalValues.min_time) }}
     CardDescription
+      Separator(v-if='store.observations.length >=3' class='my-4' label='Estimated Time Curve')
+    CardContent
+      LineChart(
+        v-if='store.observations.length >= 3'
+        :data='store.observationsSpeedByTravelTime'
+        index='Speed'
+        :categories="['Hours']"
+        :y-formatter="yFormatter"
+      )
+      Separator(class='my-4' label='Stats')
+      Table(v-if='store.observations.length > 0')
+        TableRow
+          TableCell(class='inter-700') Speed: 
+          TableCell {{ optimalValues.best_speed }}
+        TableRow
+          TableCell(class='inter-700') Estimated Time: 
+          TableCell {{ convertMinutesToHoursMinutes(optimalValues.min_time) }}
+        TableRow
+          TableCell(class='inter-700') Total Stops: 
+          TableCell {{ optimalValues.stops }}
+        TableRow
+          TableCell(class='inter-700') Refueling Time: 
+          TableCell {{ optimalValues.refueling_time }}
+        TableRow
+          TableCell(class='inter-700') Fuel Need: 
+          TableCell {{ optimalValues.fuel_consumed.toFixed(0) }}
 </template>

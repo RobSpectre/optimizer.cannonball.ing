@@ -34,9 +34,7 @@ import { event } from "vue-gtag"
 
 import { useStore } from '@/store/index.js'
 
-import {
-  calculateTravelTimeWithFormatting
-} from '@/lib/utils'
+import { convertMinutesToHoursMinutes } from '@/lib/utils'
 
 const store = useStore()
 
@@ -68,20 +66,6 @@ function handleRemoveObservation (speed) {
     event_category: 'UX'
   })
 }
-
-const observations_with_min_time = computed( () => {
-  return store.observations.map((observation) => ({
-    speed: observation.speed,
-    economy: observation.economy,
-    min_time: calculateTravelTimeWithFormatting(
-      store.distance,
-      observation.speed,
-      observation.economy,
-      store.capacity,
-      store.stop_time
-    )
-  }))
-})
 
 const isVisible = computed(() => {
   return (
@@ -116,11 +100,17 @@ Card(class='max-w-md my-6 py-3')
             TableHead Speed
             TableHead Economy
             TableHead(v-if="isVisible") Est. Time
+            TableHead(v-if="isVisible") Stops 
+            TableHead(v-if="isVisible") Fuel Needed 
             TableHead(class='text-right') Remove
-        TableRow(v-for='observation in observations_with_min_time')
+        TableRow(
+          v-for='observation in store.observationsWithCalculationsSorted'
+        )
           TableCell {{ observation.speed }}
           TableCell {{ observation.economy }}
-          TableCell(v-if='isVisible') {{ observation.min_time }}
+          TableCell(v-if='isVisible') {{ convertMinutesToHoursMinutes(observation.total_time) }}
+          TableCell(v-if='isVisible') {{ observation.stops }}
+          TableCell(v-if='isVisible') {{ observation.fuel_consumed.toFixed(0) }}
           TableCell
             .flex.justify-end
               Icon(
