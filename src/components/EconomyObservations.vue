@@ -34,8 +34,8 @@ import { useStore } from '@/store/index.js'
 
 const store = useStore()
 
-const speed = null
-const economy = null
+let speed = null
+let economy = null
 
 function handleAddObservation (speed, economy) {
   if(speed !== null && economy !== null) {
