@@ -75,12 +75,6 @@ const isVisible = computed(() => {
     store.observations.length >= 2   )
 })
 
-function xFormatter(tick, i) {
-  return typeof tick === 'number'
-    ? `${new Intl.NumberFormat('us').format(tick).toString()}`
-    : '';
-}
-
 function yFormatter(tick, i) {
   return typeof tick === 'number'
     ? `${new Intl.NumberFormat('us').format(tick).toString()}`
@@ -111,7 +105,7 @@ Card(
       )
       Separator(class='my-4' label='Stats')
       Table(v-if='store.observations.length > 0')
-        TableRow
+        TableRow(v-if='store.model')
           TableCell(class='inter-700 flex flex-row items-center')
             Icon(icon='mdi:car' width='32' height='32')
             span.ml-3 Model:
