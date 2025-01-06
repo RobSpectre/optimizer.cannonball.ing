@@ -139,7 +139,7 @@ Card(class='max-w-md my-6 py-3')
             p
             | and miles in the distance field).
     .w-full.max-w-md.col-span-2.flex.flex-row.items-center.space-x-2.mx-auto
-      Icon(icon='mdi:fuel-pump' width='32' height='32')
+      Icon(icon='material-symbols:speed' width='32' height='32')
       Input(
         v-model='speed'
         id='speed'

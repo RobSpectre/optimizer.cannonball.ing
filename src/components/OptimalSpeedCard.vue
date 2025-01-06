@@ -75,6 +75,12 @@ const isVisible = computed(() => {
     store.observations.length >= 2   )
 })
 
+function xFormatter(tick, i) {
+  return typeof tick === 'number'
+    ? `${new Intl.NumberFormat('us').format(tick).toString()}`
+    : '';
+}
+
 function yFormatter(tick, i) {
   return typeof tick === 'number'
     ? `${new Intl.NumberFormat('us').format(tick).toString()}`
@@ -94,9 +100,8 @@ Card(
         span.text-3xl.inter-700.mx-3 {{ optimalValues.best_speed }}
         |  will take
         span.text-3xl.inter-700.ml-3 {{ convertMinutesToHoursMinutes(optimalValues.min_time) }}
-    CardDescription
-      Separator(v-if='store.observations.length >=3' class='my-4' label='Estimated Time Curve')
     CardContent
+      Separator(v-if='store.observations.length >=3' class='my-4' label='Estimated Time Curve')
       LineChart(
         v-if='store.observations.length >= 3'
         :data='store.observationsSpeedByTravelTime'
@@ -107,18 +112,43 @@ Card(
       Separator(class='my-4' label='Stats')
       Table(v-if='store.observations.length > 0')
         TableRow
-          TableCell(class='inter-700') Speed: 
+          TableCell(class='inter-700 flex flex-row items-center')
+            Icon(icon='mdi:car' width='32' height='32')
+            span.ml-3 Model:
+          TableCell {{ store.model }}
+        TableRow
+          TableCell(class='inter-700 flex flex-row items-center')
+            Icon(icon='mdi:fuel' width='32' height='32') 
+            span.ml-3 Fuel Capacity: 
+          TableCell {{ store.capacity }}
+        TableRow
+          TableCell(class='inter-700 flex flex-row items-center')
+            Icon(icon='mdi:map-marker-distance' width='32' height='32')
+            span.ml-3 Distance: 
+          TableCell {{ store.distance }}
+        TableRow
+          TableCell(class='inter-700 flex flex-row items-center')
+            Icon(icon='material-symbols:speed' width='32' height='32')
+            span.ml-3 Speed: 
           TableCell {{ optimalValues.best_speed }}
         TableRow
-          TableCell(class='inter-700') Estimated Time: 
+          TableCell(class='inter-700 flex flex-row items-center')
+            Icon(icon='material-symbols:hourglass' width='32' height='32')
+            span.ml-3 Estimated Time: 
           TableCell {{ convertMinutesToHoursMinutes(optimalValues.min_time) }}
         TableRow
-          TableCell(class='inter-700') Total Stops: 
+          TableCell(class='inter-700 flex flex-row items-center')
+            Icon(icon='mdi:fuel-pump' width='32' height='32')
+            span.ml-3 Total Stops: 
           TableCell {{ optimalValues.stops }}
         TableRow
-          TableCell(class='inter-700') Refueling Time: 
+          TableCell(class='inter-700 flex flex-row items-center')
+            Icon(icon='mdi:stopwatch-add' width='32' height='32')
+            span.ml-3 Refueling Time: 
           TableCell {{ optimalValues.refueling_time }}
         TableRow
-          TableCell(class='inter-700') Fuel Need: 
+          TableCell(class='inter-700 flex flex-row items-center')
+            Icon(icon='mdi:fossil-fuel' width='32' height='32')
+            span.ml-3 Fuel Needed: 
           TableCell {{ optimalValues.fuel_consumed.toFixed(0) }}
 </template>
