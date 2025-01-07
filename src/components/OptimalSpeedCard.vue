@@ -53,7 +53,9 @@ function handleCalculateOptimalSpeed () {
 
     event('Find Optimal Speed', {
       event_category: 'UX',
-      event_label: min_time,
+      observation_speed: min_time.best_speed,
+      observation_economy: min_time.economy,
+      estimated_time: min_time.min_time,
       vehicle_model: store.model,
       vehicle_fuel_capacity: store.capacity,
       vehicle_target_distance: store.distance,
@@ -103,7 +105,7 @@ Card(
         :categories="['Hours']"
         :y-formatter="yFormatter"
       )
-      Separator(class='my-4' label='Stats')
+      Separator(v-if='store.observations.length > 0' class='my-4' label='Stats')
       Table(v-if='store.observations.length > 0')
         TableRow(v-if='store.model')
           TableCell(class='inter-700 flex flex-row items-center')

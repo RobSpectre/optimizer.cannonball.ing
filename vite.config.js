@@ -9,5 +9,15 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src')
     }
   },
+  test: {
+    globals: true, // Allows using Jest-like global APIs
+    environment: 'jsdom', // Simulates a browser environment
+    setupFiles: './vitest.setup.js', // Path to setup file (optional)
+    coverage: {
+      provider: 'istanbul', // Coverage provider
+      reporter: ['text', 'json', 'html'], // Coverage reports
+      exclude: ['node_modules/', 'tests/'], // Exclude files from coverage
+    }
+  },
   plugins: [vue()],
 })
