@@ -125,7 +125,7 @@ Card(
         TableRow
           TableCell(class='inter-700 flex flex-row items-center')
             Icon(icon='material-symbols:speed' width='32' height='32')
-            span.ml-3 Speed: 
+            span.ml-3 Average Speed: 
           TableCell {{ optimalValues.best_speed }}
         TableRow
           TableCell(class='inter-700 flex flex-row items-center')

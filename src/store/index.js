@@ -26,6 +26,8 @@ const getters = {
         this.stop_time
       )
 
+      debugger
+
       return {
         speed: observation.speed,
         economy: observation.economy,
